@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Enrichly.sg – Camps & Enrichment in Singapore</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Enrichly.sg helps parents discover and compare holiday camps and enrichment classes for kids in Singapore – including STEM, AI & Tech, arts, sports, language and more."
+    />
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brandPurple: '#5A2DAF',
+              brandPurpleDark: '#462A87',
+              brandTeal: '#3EC7B8',
+              brandIvory: '#FAF7F2',
+              brandYellow: '#FFC857',
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-brandIvory text-slate-900 antialiased">
+    <!-- Header -->
+    <header
+      class="bg-white/80 backdrop-blur border-b border-slate-200 sticky top-0 z-30"
+    >
+      <div
+        class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16"
+      >
+        <a href="#" class="flex items-center gap-2">
+          <div
+            class="w-8 h-8 rounded-2xl bg-gradient-to-br from-brandPurple to-brandTeal flex items-center justify-center text-white font-bold text-lg"
+          >
+            E
+          </div>
+          <div>
+            <div class="font-semibold text-lg text-brandPurple">
+              Enrichly<span class="text-brandTeal">.sg</span>
+            </div>
+            <div class="text-[11px] text-slate-500 leading-none">
+              Camps &amp; Enrichment Directory
+            </div>
+          </div>
+        </a>
+        <nav class="hidden md:flex items-center gap-6 text-sm">
+          <a
+            href="#categories"
+            class="text-slate-600 hover:text-brandPurple font-medium"
+            >Categories</a
+          >
+          <a
+            href="#featured"
+            class="text-slate-600 hover:text-brandPurple font-medium"
+            >Featured</a
+          >
+          <a
+            href="#guides"
+            class="text-slate-600 hover:text-brandPurple font-medium"
+            >Guides</a
+          >
+          <a
+            href="#for-vendors"
+            class="text-slate-600 hover:text-brandPurple font-medium"
+            >For Vendors</a
+          >
+        </nav>
+        <div class="flex items-center gap-3">
+          <button
+            class="hidden sm:inline-flex px-3 py-1.5 text-xs font-medium rounded-full border border-brandPurple/30 text-brandPurple hover:bg-brandPurple/5"
+          >
+            Log in
+          </button>
+          <button
+            class="px-4 py-2 text-xs sm:text-sm font-semibold rounded-full bg-gradient-to-r from-brandPurple to-brandTeal text-white shadow-md hover:shadow-lg"
+          >
+            List Your Program – Free
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero -->
+      <section class="pt-10 pb-12 sm:pt-16 sm:pb-16">
+        <div
+          class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid gap-10 lg:grid-cols-2 items-center"
+        >
+          <div>
+            <h1
+              class="text-3xl sm:text-4xl lg:text-5xl font-bold text-brandPurpleDark leading-tight"
+            >
+              Discover the Best Holiday Camps &amp; Enrichment Classes
+              <span class="block text-brandTeal">for Kids in Singapore.</span>
+            </h1>
+            <p class="mt-4 text-slate-600 text-sm sm:text-base max-w-xl">
+              Enrichly.sg brings together holiday camps, AI &amp; tech
+              workshops, arts, sports, and more – so you can compare and choose
+              the right experience for your child in minutes.
+            </p>
+
+            <!-- Search -->
+            <div
+              class="mt-6 bg-white rounded-2xl shadow-sm border border-slate-200 p-3 sm:p-4"
+            >
+              <label
+                class="block text-xs font-semibold text-slate-500 mb-2"
+                for="searchInput"
+              >
+                Search camps &amp; classes
+              </label>
+              <div
+                class="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center"
+              >
+                <div
+                  class="flex-1 flex items-center gap-2 bg-slate-50 rounded-xl px-3 py-2"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-4 w-4 text-slate-400"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="m21 21-4.35-4.35m0 0A7.5 7.5 0 1 0 5.65 5.65a7.5 7.5 0 0 0 10.99 10.99Z"
+                    />
+                  </svg>
+                  <input
+                    id="searchInput"
+                    type="text"
+                    placeholder="e.g. June holiday coding camp, art, AI, age 7"
+                    class="w-full bg-transparent border-0 focus:ring-0 text-sm placeholder:text-slate-400"
+                    oninput="filterPrograms()"
+                  />
+                </div>
+                <button
+                  class="px-4 py-2 bg-brandPurple text-white rounded-xl text-sm font-semibold hover:bg-brandPurpleDark"
+                  onclick="scrollToPrograms()"
+                >
+                  Search programs
+                </button>
+              </div>
+            </div>
+
+            <!-- Chips -->
+            <div class="mt-4 flex flex-wrap gap-2 text-[11px] text-slate-500">
+              <button
+                class="px-2.5 py-1 rounded-full bg-white border border-slate-200 hover:border-brandTeal"
+                onclick="quickFilter('holiday')"
+              >
+                🎒 June holiday camps
+              </button>
+              <button
+                class="px-2.5 py-1 rounded-full bg-white border border-slate-200 hover:border-brandTeal"
+                onclick="quickFilter('ai')"
+              >
+                🤖 AI &amp; Tech
+              </button>
+              <button
+                class="px-2.5 py-1 rounded-full bg-white border border-slate-200 hover:border-brandTeal"
+                onclick="quickFilter('stem')"
+              >
+                🔬 STEM &amp; Science
+              </button>
+              <button
+                class="px-2.5 py-1 rounded-full bg-white border border-slate-200 hover:border-brandTeal"
+                onclick="quickFilter('sports')"
+              >
+                ⚽ Sports &amp; Movement
+              </button>
+            </div>
+          </div>
+
+          <!-- Hero card -->
+          <div class="relative">
+            <div
+              class="absolute -top-6 -left-4 w-20 h-20 bg-gradient-to-br from-brandPurple/20 to-brandTeal/20 rounded-3xl blur-xl"
+            ></div>
+            <div
+              class="absolute -bottom-4 -right-6 w-24 h-24 bg-gradient-to-tr from-brandTeal/20 to-brandPurple/20 rounded-3xl blur-xl"
+            ></div>
+
+            <div
+              class="relative bg-white rounded-3xl border border-slate-200 shadow-sm p-5 sm:p-6 space-y-4"
+            >
+              <div class="flex items-center justify-between gap-4">
+                <div>
+                  <p
+                    class="text-xs font-semibold text-slate-500 uppercase tracking-wide"
+                  >
+                    At a glance
+                  </p>
+                  <p class="mt-1 text-2xl font-bold text-brandPurpleDark">
+                    200+ programs
+                  </p>
+                  <p class="text-xs text-slate-500">
+                    holiday camps &amp; enrichment classes
+                  </p>
+                </div>
+                <div
+                  class="w-16 h-16 rounded-2xl bg-gradient-to-br from-brandPurple to-brandTeal flex items-center justify-center text-white text-2xl font-bold"
+                >
+                  ✨
+                </div>
+              </div>
+
+              <div class="grid grid-cols-2 gap-3 text-xs">
+                <div class="p-3 rounded-2xl bg-brandPurple/5">
+                  <p class="font-semibold text-brandPurple text-sm">
+                    AI &amp; Tech
+                  </p>
+                  <p class="text-slate-600 mt-1">
+                    Coding, robotics, kid-friendly AI tools &amp; more.
+                  </p>
+                </div>
+                <div class="p-3 rounded-2xl bg-brandTeal/5">
+                  <p class="font-semibold text-brandPurpleDark text-sm">
+                    Multi-activity
+                  </p>
+                  <p class="text-slate-600 mt-1">
+                    Adventure, arts, sports, all-in-one camps.
+                  </p>
+                </div>
+              </div>
+
+              <div
+                class="border-t border-slate-100 pt-3 text-[11px] text-slate-500"
+              >
+                Trusted by parents across Singapore.
+                <span class="font-semibold text-brandPurple"
+                  >Start exploring today.</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Categories -->
+      <section
+        id="categories"
+        class="py-10 sm:py-14 bg-white border-y border-slate-200"
+      >
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex items-end justify-between gap-4 mb-6">
+            <div>
+              <h2 class="text-xl sm:text-2xl font-bold text-brandPurpleDark">
+                Explore by Category
+              </h2>
+              <p class="text-xs sm:text-sm text-slate-600 mt-1">
+                Filter programs by your child’s age, interests, and school
+                holiday schedule.
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="grid gap-4 sm:gap-5 md:grid-cols-3 lg:grid-cols-4 text-sm"
+          >
+            <button
+              class="text-left bg-brandPurple/5 hover:bg-brandPurple/10 border border-brandPurple/10 rounded-2xl p-4 flex flex-col gap-1"
+              onclick="quickFilter('holiday')"
+            >
+              <div class="text-xs font-semibold text-brandPurple">
+                Holiday Camps
+              </div>
+              <div class="text-[11px] text-slate-600">
+                Multi-activity, adventure &amp; themed school holiday programs.
+              </div>
+            </button>
+
+            <button
+              class="text-left bg-brandTeal/5 hover:bg-brandTeal/10 border border-brandTeal/10 rounded-2xl p-4 flex flex-col gap-1"
+              onclick="quickFilter('stem')"
+            >
+              <div class="text-xs font-semibold text-brandPurpleDark">
+                STEM &amp; Coding
+              </div>
+              <div class="text-[11px] text-slate-600">
+                Hands-on STEM, robotics, coding and science experiments.
+              </div>
+            </button>
+
+            <button
+              class="text-left bg-brandTeal/5 hover:bg-brandTeal/10 border border-brandTeal/10 rounded-2xl p-4 flex flex-col gap-1"
+              onclick="quickFilter('ai')"
+            >
+              <div class="text-xs font-semibold text-brandPurpleDark">
+                AI &amp; Tech
+              </div>
+              <div class="text-[11px] text-slate-600">
+                Kid-friendly AI tools, machine learning basics, tech innovation
+                camps.
+              </div>
+            </button>
+
+            <button
+              class="text-left bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-2xl p-4 flex flex-col gap-1"
+              onclick="quickFilter('arts')"
+            >
+              <div class="text-xs font-semibold text-brandPurpleDark">
+                Art &amp; Creativity
+              </div>
+              <div class="text-[11px] text-slate-600">
+                Drawing, painting, design, animation &amp; storytelling.
+              </div>
+            </button>
+
+            <button
+              class="text-left bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-2xl p-4 flex flex-col gap-1"
+              onclick="quickFilter('sports')"
+            >
+              <div class="text-xs font-semibold text-brandPurpleDark">
+                Sports &amp; Movement
+              </div>
+              <div class="text-[11px] text-slate-600">
+                Sports, dance, gymnastics, martial arts and active play.
+              </div>
+            </button>
+
+            <button
+              class="text-left bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-2xl p-4 flex flex-col gap-1"
+              onclick="quickFilter('mandarin')"
+            >
+              <div class="text-xs font-semibold text-brandPurpleDark">
+                Mandarin &amp; Language
+              </div>
+              <div class="text-[11px] text-slate-600">
+                Language immersion, reading, speech &amp; drama programs.
+              </div>
+            </button>
+
+            <button
+              class="text-left bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-2xl p-4 flex flex-col gap-1"
+              onclick="quickFilter('science')"
+            >
+              <div class="text-xs font-semibold text-brandPurpleDark">
+                Science Workshops
+              </div>
+              <div class="text-[11px] text-slate-600">
+                Hands-on experiments, eco-science, engineering basics.
+              </div>
+            </button>
+
+            <button
+              class="text-left bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-2xl p-4 flex flex-col gap-1"
+              onclick="quickFilter('weekend')"
+            >
+              <div class="text-xs font-semibold text-brandPurpleDark">
+                Weekend &amp; Trial Classes
+              </div>
+              <div class="text-[11px] text-slate-600">
+                Short-format workshops and trials for busy families.
+              </div>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Featured programs -->
+      <section id="featured" class="py-10 sm:py-14">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex items-end justify-between gap-4 mb-6">
+            <div>
+              <h2 class="text-xl sm:text-2xl font-bold text-brandPurpleDark">
+                Featured Programs
+              </h2>
+              <p class="text-xs sm:text-sm text-slate-600 mt-1">
+                A snapshot of popular camps &amp; classes.
+              </p>
+            </div>
+          </div>
+
+          <div
+            id="programGrid"
+            class="grid gap-4 sm:gap-5 md:grid-cols-3 text-sm"
+          >
+            <!-- Cards -->
+            <article
+              class="program-card bg-white border border-slate-200 rounded-2xl p-4 flex flex-col gap-2"
+              data-tags="holiday multi-activity"
+            >
+              <div class="text-xs font-semibold text-brandPurple">
+                June Holiday Multi-Activity Camp
+              </div>
+              <div class="text-[11px] text-slate-500">
+                Ages 7–10 • Bukit Timah
+              </div>
+              <p class="text-[12px] text-slate-600">
+                Five days of sports, art, team games and outdoor adventures
+                during the June holidays.
+              </p>
+              <div class="flex items-center justify-between mt-1">
+                <span
+                  class="inline-flex items-center rounded-full bg-brandPurple/5 px-2 py-0.5 text-[11px] text-brandPurple"
+                  >Holiday Camp</span
+                >
+                <span class="text-[11px] text-slate-500">From $480/week</span>
+              </div>
+            </article>
+
+            <article
+              class="program-card bg-white border border-slate-200 rounded-2xl p-4 flex flex-col gap-2"
+              data-tags="ai tech coding stem"
+            >
+              <div class="text-xs font-semibold text-brandPurple">
+                AI &amp; Coding Lab for Kids
+              </div>
+              <div class="text-[11px] text-slate-500">Ages 9–12 • Orchard</div>
+              <p class="text-[12px] text-slate-600">
+                Kids explore coding, AI tools and simple machine learning
+                concepts in a fun, guided lab.
+              </p>
+              <div class="flex items-center justify-between mt-1">
+                <span
+                  class="inline-flex items-center rounded-full bg-brandTeal/5 px-2 py-0.5 text-[11px] text-brandPurpleDark"
+                  >AI &amp; Tech</span
+                >
+                <span class="text-[11px] text-slate-500">From $520/week</span>
+              </div>
+            </article>
+
+            <article
+              class="program-card bg-white border border-slate-200 rounded-2xl p-4 flex flex-col gap-2"
+              data-tags="stem science"
+            >
+              <div class="text-xs font-semibold text-brandPurple">
+                STEM Science Explorers
+              </div>
+              <div class="text-[11px] text-slate-500">
+                Ages 6–9 • Science Centre
+              </div>
+              <p class="text-[12px] text-slate-600">
+                Hands-on experiments and science challenges to spark curiosity.
+              </p>
+              <div class="flex items-center justify-between mt-1">
+                <span
+                  class="inline-flex items-center rounded-full bg-brandTeal/5 px-2 py-0.5 text-[11px] text-brandPurpleDark"
+                  >STEM &amp; Science</span
+                >
+                <span class="text-[11px] text-slate-500">From $420/week</span>
+              </div>
+            </article>
+
+            <article
+              class="program-card bg-white border border-slate-200 rounded-2xl p-4 flex flex-col gap-2"
+              data-tags="arts creativity"
+            >
+              <div class="text-xs font-semibold text-brandPurple">
+                Creative Art Studio Camp
+              </div>
+              <div class="text-[11px] text-slate-500">Ages 5–8 • Katong</div>
+              <p class="text-[12px] text-slate-600">
+                Drawing, painting, collage and clay to build creative
+                confidence.
+              </p>
+              <div class="flex items-center justify-between mt-1">
+                <span
+                  class="inline-flex items-center rounded-full bg-slate-100 px-2 py-0.5 text-[11px] text-brandPurpleDark"
+                  >Art &amp; Creativity</span
+                >
+                <span class="text-[11px] text-slate-500">From $360/week</span>
+              </div>
+            </article>
+
+            <article
+              class="program-card bg-white border border-slate-200 rounded-2xl p-4 flex flex-col gap-2"
+              data-tags="sports movement"
+            >
+              <div class="text-xs font-semibold text-brandPurple">
+                Sports &amp; Movement Holiday Clinic
+              </div>
+              <div class="text-[11px] text-slate-500">
+                Ages 8–12 • East Coast
+              </div>
+              <p class="text-[12px] text-slate-600">
+                Daily sports rotations – football, basketball, athletics and
+                team games.
+              </p>
+              <div class="flex items-center justify-between mt-1">
+                <span
+                  class="inline-flex items-center rounded-full bg-slate-100 px-2 py-0.5 text-[11px] text-brandPurpleDark"
+                  >Sports &amp; Movement</span
+                >
+                <span class="text-[11px] text-slate-500">From $450/week</span>
+              </div>
+            </article>
+
+            <article
+              class="program-card bg-white border border-slate-200 rounded-2xl p-4 flex flex-col gap-2"
+              data-tags="mandarin language"
+            >
+              <div class="text-xs font-semibold text-brandPurple">
+                Mandarin Immersion Holiday Camp
+              </div>
+              <div class="text-[11px] text-slate-500">Ages 5–9 • Bishan</div>
+              <p class="text-[12px] text-slate-600">
+                Games, songs and stories conducted in Mandarin to boost
+                confidence.
+              </p>
+              <div class="flex items-center justify-between mt-1">
+                <span
+                  class="inline-flex items-center rounded-full bg-slate-100 px-2 py-0.5 text-[11px] text-brandPurpleDark"
+                  >Language &amp; Literacy</span
+                >
+                <span class="text-[11px] text-slate-500">From $380/week</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Guides -->
+      <section id="guides" class="py-10 sm:py-14">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex items-end justify-between gap-4 mb-6">
+            <div>
+              <h2 class="text-xl sm:text-2xl font-bold text-brandPurpleDark">
+                Guides &amp; recommendations
+              </h2>
+              <p class="text-xs sm:text-sm text-slate-600 mt-1">
+                Articles to help you choose the right programs and plan your
+                child’s learning journey.
+              </p>
+            </div>
+            <button
+              class="hidden sm:inline-flex text-xs font-semibold text-brandPurple hover:text-brandPurpleDark"
+            >
+              View all guides →
+            </button>
+          </div>
+
+          <div class="grid gap-4 sm:gap-5 md:grid-cols-3 text-sm">
+            <article
+              class="bg-white border border-slate-200 rounded-2xl p-4 flex flex-col gap-2"
+            >
+              <div
+                class="text-[11px] font-semibold text-brandTeal uppercase tracking-wide"
+              >
+                Holiday Camps
+              </div>
+              <h3 class="font-semibold text-slate-900 text-sm">
+                Top 20 June Holiday Camps in Singapore
+              </h3>
+              <p class="text-[12px] text-slate-600">
+                A curated list of multi-activity, sports and STEM camps for
+                different age groups.
+              </p>
+              <button
+                class="mt-1 text-[11px] font-semibold text-brandPurple hover:text-brandPurpleDark w-fit"
+              >
+                Read guide →
+              </button>
+            </article>
+
+            <article
+              class="bg-white border border-slate-200 rounded-2xl p-4 flex flex-col gap-2"
+            >
+              <div
+                class="text-[11px] font-semibold text-brandTeal uppercase tracking-wide"
+              >
+                AI &amp; Tech
+              </div>
+              <h3 class="font-semibold text-slate-900 text-sm">
+                Beginner-Friendly AI &amp; Coding Classes for Kids
+              </h3>
+              <p class="text-[12px] text-slate-600">
+                How to introduce AI concepts safely and meaningfully to children
+                aged 8–12.
+              </p>
+              <button
+                class="mt-1 text-[11px] font-semibold text-brandPurple hover:text-brandPurpleDark w-fit"
+              >
+                Read guide →
+              </button>
+            </article>
+
+            <article
+              class="bg-white border border-slate-200 rounded-2xl p-4 flex flex-col gap-2"
+            >
+              <div
+                class="text-[11px] font-semibold text-brandTeal uppercase tracking-wide"
+              >
+                Parent Tips
+              </div>
+              <h3 class="font-semibold text-slate-900 text-sm">
+                How to Choose the Right Enrichment Class
+              </h3>
+              <p class="text-[12px] text-slate-600">
+                Questions to ask providers and signs that a program is a good
+                fit for your child.
+              </p>
+              <button
+                class="mt-1 text-[11px] font-semibold text-brandPurple hover:text-brandPurpleDark w-fit"
+              >
+                Read guide →
+              </button>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Vendor CTA -->
+      <section
+        id="for-vendors"
+        class="py-10 sm:py-14 bg-white border-t border-slate-200"
+      >
+        <div
+          class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid gap-8 md:grid-cols-2 items-center"
+        >
+          <div>
+            <h2 class="text-xl sm:text-2xl font-bold text-brandPurpleDark">
+              For enrichment providers &amp; camp organisers
+            </h2>
+            <p class="mt-2 text-sm text-slate-600">
+              List your programs on Enrichly.sg and reach parents actively
+              searching for camps and classes in Singapore.
+            </p>
+            <ul class="mt-4 space-y-2 text-sm text-slate-700">
+              <li>• Free basic listing for your programs</li>
+              <li>• Optional featured placement during peak holiday seasons</li>
+              <li>• Performance insights – views, clicks and enquiries</li>
+              <li>
+                • Designed for holiday camps, AI &amp; tech, enrichment and more
+              </li>
+            </ul>
+            <button
+              class="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-brandPurple to-brandTeal text-white text-xs font-semibold shadow-md hover:shadow-lg"
+            >
+              List your program – Free
+              <span class="text-[10px]">→</span>
+            </button>
+          </div>
+          <div
+            class="bg-brandPurple/5 border border-brandPurple/10 rounded-3xl p-5 sm:p-6 text-sm"
+          >
+            <h3 class="font-semibold text-brandPurpleDark mb-2">
+              How it works
+            </h3>
+            <ol
+              class="list-decimal list-inside space-y-1 text-slate-700 text-[13px]"
+            >
+              <li>Submit your program details and preferred categories.</li>
+              <li>We review and publish your listing in the directory.</li>
+              <li>
+                Parents discover your programs and send enquiries directly.
+              </li>
+              <li>Upgrade to featured placements for greater visibility.</li>
+            </ol>
+            <p class="mt-3 text-[12px] text-slate-600">
+              Enrichly.sg focuses on quality, relevance and ease of discovery,
+              so families can connect with the right programs faster.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-300 text-xs">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="grid gap-6 md:grid-cols-4">
+          <div>
+            <div class="flex items-center gap-2 mb-2">
+              <div
+                class="w-7 h-7 rounded-2xl bg-gradient-to-br from-brandPurple to-brandTeal flex items-center justify-center text-white text-sm font-bold"
+              >
+                E
+              </div>
+              <span class="font-semibold text-sm text-white">Enrichly.sg</span>
+            </div>
+            <p class="text-[11px] text-slate-400">
+              A Singapore-based directory for kids’ holiday camps &amp;
+              enrichment programs – helping families find meaningful learning
+              experiences.
+            </p>
+          </div>
+          <div>
+            <h4
+              class="text-[11px] font-semibold text-slate-200 mb-2 uppercase tracking-wide"
+            >
+              Parents
+            </h4>
+            <ul class="space-y-1 text-[11px] text-slate-400">
+              <li>
+                <a href="#categories" class="hover:text-white"
+                  >Browse all categories</a
+                >
+              </li>
+              <li>
+                <a href="#featured" class="hover:text-white"
+                  >Featured programs</a
+                >
+              </li>
+              <li>
+                <a href="#guides" class="hover:text-white">Guides &amp; tips</a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4
+              class="text-[11px] font-semibold text-slate-200 mb-2 uppercase tracking-wide"
+            >
+              Vendors
+            </h4>
+            <ul class="space-y-1 text-[11px] text-slate-400">
+              <li>
+                <a href="#for-vendors" class="hover:text-white"
+                  >List your program</a
+                >
+              </li>
+              <li>
+                <span class="opacity-70"
+                  >Plans &amp; pricing (coming soon)</span
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4
+              class="text-[11px] font-semibold text-slate-200 mb-2 uppercase tracking-wide"
+            >
+              Company
+            </h4>
+            <ul class="space-y-1 text-[11px] text-slate-400">
+              <li><span class="opacity-70">About Enrichly.sg</span></li>
+              <li><span class="opacity-70">Contact</span></li>
+              <li><span class="opacity-70">Privacy &amp; terms</span></li>
+            </ul>
+          </div>
+        </div>
+        <div
+          class="mt-6 border-t border-slate-800 pt-3 flex items-center justify-between gap-4"
+        >
+          <p class="text-[10px] text-slate-500">
+            © <span id="year"></span> Enrichly.sg. All rights reserved.
+          </p>
+          <p class="text-[10px] text-slate-500">
+            Made for families in Singapore.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Simple JS -->
+    <script>
+      const programCards = document.querySelectorAll('.program-card');
+      const searchInput = document.getElementById('searchInput');
+
+      function filterPrograms() {
+        const q = (searchInput?.value || '').toLowerCase().trim();
+        programCards.forEach((card) => {
+          const text = card.innerText.toLowerCase();
+          card.style.display = !q || text.includes(q) ? 'flex' : 'none';
+        });
+      }
+
+      function quickFilter(tag) {
+        if (searchInput) {
+          searchInput.value = tag;
+        }
+        filterPrograms();
+        scrollToPrograms();
+      }
+
+      function scrollToPrograms() {
+        const section = document.getElementById('featured');
+        if (section)
+          section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
